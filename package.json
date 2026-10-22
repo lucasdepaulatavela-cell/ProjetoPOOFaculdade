@@ -1,4 +1,8 @@
 {
+  "type": "module",
+  "scripts": {
+    "start": "tsx src/main.ts"
+  },
   "devDependencies": {
     "@types/node": "^26.6.5",
     "tsx": "^4.23.15",

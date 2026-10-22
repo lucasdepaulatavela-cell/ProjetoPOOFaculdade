@@ -1,6 +1,6 @@
 import * as readline from "node:readline/promises";
 import { stdin as input, stdout as output } from "node:process";
-import { Filme } from "../models/Filme";
+import { Descritivel } from "../models/Descritivel";
 
 export class CinemaView {
   private rl = readline.createInterface({ input, output });
@@ -8,6 +8,7 @@ export class CinemaView {
   exibirMenu(): void {
     console.log("\n=== CINEMA ===");
     console.log("1 - Listar filmes");
+    console.log("2 - Listar sessões");
     console.log("0 - Sair");
   }
 
@@ -15,13 +16,13 @@ export class CinemaView {
     return (await this.rl.question("Escolha uma opção: ")).trim();
   }
 
-  exibirFilmes(filmes: Filme[]): void {
-    if (filmes.length === 0) {
-      console.log("Nenhum filme cadastrado.");
+  exibirLista(itens: Descritivel[]): void {
+    if (itens.length === 0) {
+      console.log("Nada cadastrado.");
       return;
     }
-    for (const filme of filmes) {
-      console.log(filme.descricao());
+    for (let i = 0; i < itens.length; i++) {
+      console.log(`${i + 1}. ${itens[i].descricao()}`);
     }
   }
 

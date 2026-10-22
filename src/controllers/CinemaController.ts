@@ -1,14 +1,13 @@
 import { CinemaView } from "../views/CinemaView";
 import { FilmeService } from "../services/FilmeService";
+import { SessaoService } from "../services/SessaoService";
 
 export class CinemaController {
-  private readonly view: CinemaView;
-  private readonly filmeService: FilmeService;
-
-  constructor(view: CinemaView, filmeService: FilmeService) {
-    this.view = view;
-    this.filmeService = filmeService;
-  }
+  constructor(
+    private readonly view: CinemaView,
+    private readonly filmeService: FilmeService,
+    private readonly sessaoService: SessaoService
+  ) {}
 
   async iniciar(): Promise<void> {
     let executando = true;
@@ -19,7 +18,10 @@ export class CinemaController {
 
       switch (opcao) {
         case "1":
-          this.view.exibirFilmes(this.filmeService.listarFilmes());
+          this.view.exibirLista(this.filmeService.listarFilmes());
+          break;
+        case "2":
+          this.view.exibirLista(this.sessaoService.listar());
           break;
         case "0":
           executando = false;

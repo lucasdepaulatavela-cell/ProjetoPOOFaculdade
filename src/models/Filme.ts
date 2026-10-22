@@ -1,4 +1,6 @@
-export class Filme {
+import { Descritivel } from "./Descritivel";
+
+export class Filme implements Descritivel {
   public readonly titulo: string;
   public readonly duracaoMinutos: number;
   public readonly classificacao: string;
